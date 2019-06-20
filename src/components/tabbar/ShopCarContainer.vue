@@ -1,5 +1,5 @@
 <template>
-    <h2>000</h2>
+    <h2>ShopCarContainer</h2>
 </template>
 
 <script>

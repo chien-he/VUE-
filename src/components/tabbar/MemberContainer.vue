@@ -1,5 +1,5 @@
 <template>
-    <h2>789</h2>
+    <h2>MemberContainer</h2>
 </template>
 
 <script>

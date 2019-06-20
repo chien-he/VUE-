@@ -1,5 +1,5 @@
 <template>
-    <h2>911</h2>
+    <h2>SearchContainer</h2>
 </template>
 
 <script>

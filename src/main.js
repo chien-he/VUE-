@@ -6,9 +6,16 @@ import VueRouter from 'vue-router'
 // 手动安装VueRouter
 Vue.use(VueRouter);
 
+// 导入 vue-resource
+import VueResource from 'vue-resource'
+// 安装 vue-resource
+Vue.use(VueResource);
+
 // 按需导入 Mint-UI 中的组件
-import {Header} from 'mint-ui'
+import {Header, Swipe, SwipeItem} from 'mint-ui'
 Vue.component(Header.name, Header);
+Vue.component(Swipe.name, Swipe);
+Vue.component(SwipeItem.name, SwipeItem);
 
 // 导入 MUI 的样式表
 import './lib/mui/css/mui.min.css'

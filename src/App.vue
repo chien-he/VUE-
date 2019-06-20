@@ -5,7 +5,7 @@
         <mt-header fixed title="Vue商城项目"></mt-header>
 
         <!-- 中间的 路由 router-view 区域 -->
-        <transition mode="out-in">
+        <transition>
             <router-view></router-view>
         </transition>
 
@@ -30,7 +30,6 @@
             </router-link>
         </nav>
 
-<!--        <h1>123</h1>-->
 
     </div>
 </template>
@@ -43,16 +42,18 @@
 <style lang="scss" scoped>
     .app-container {
         padding-top: 40px;
+        overflow-x: hidden;  /*解决顶部和底部出现滚动条*/
     }
 
     .v-enter{
         opacity: 0;
-        transform: translateX(100%);
+        transform: translateX(100%);  /*设置从右侧进入*/
     }
 
     .v-leave-to{
         opacity: 0;
-        transform: translateX(-100%);
+        transform: translateX(-100%); /*设置从左侧消失*/
+        position: absolute; /*解决中间组件会从下面飘到上面*/
     }
 
     .v-enter-active,
