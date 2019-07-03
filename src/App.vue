@@ -2,7 +2,11 @@
     <div class="app-container">
         <!-- 顶部 Header 区域 -->
         <!--    用MintUI的header组件-->
-        <mt-header fixed title="Vue商城项目"></mt-header>
+        <mt-header fixed title="Vue商城项目">
+            <span slot="left" @click="goBack" v-show="flag">
+                <mt-button icon="back">返回</mt-button>
+            </span>
+        </mt-header>
 
         <!-- 中间的 路由 router-view 区域 -->
         <transition>
@@ -21,7 +25,7 @@
                 <span class="mui-tab-label">会员</span>
             </router-link>
             <router-link class="mui-tab-item1" to="/shopcar">
-                <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge " id="badge">0</span></span>
+                <span class="mui-icon mui-icon-extra mui-icon-extra-cart"><span class="mui-badge " id="badge">{{ $store.getters.getAllCount }}</span></span>
                 <span class="mui-tab-label">购物车</span>
             </router-link>
             <router-link class="mui-tab-item1" to="/search">
@@ -35,7 +39,30 @@
 </template>
 
 <script>
-
+    export default{
+        data(){
+            return {
+                flag: false
+            }
+        },
+        created(){  // 3. 刚开始进入时，默认是/home，设置一下
+            this.flag = this.$route.path === "/home" ? false : true;
+        },
+        methods: {
+            goBack(){  // 1. 点击后退
+                this.$router.go(-1);
+            }
+        },
+        watch: {   // 2. 监听url地址是不是/home
+            "$route.path": function (newVal) {
+                if (newVal === "/home"){
+                    this.flag = false;
+                }else{
+                    this.flag = true;
+                }
+            }
+        }
+    }
 </script>
 
 
