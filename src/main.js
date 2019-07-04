@@ -28,12 +28,12 @@ var store = new Vuex.Store({
             // 假设 在购物车中，没有找到对应的商品
             var flag = false;
             state.car.some((item)=>{
-                if(item.id == goodsinfo.id){
+                if(item.id === goodsinfo.id){
                     item.count += parseInt(goodsinfo.count);
                     flag = true;  // 表示找到了
                     return true;
                 }
-            })
+            });
             // 如果最终，循环完毕，得到的 flag 还是 false，则把商品数据直接 push 到 购物车中
             if(!flag){
                 state.car.push(goodsinfo);
@@ -44,30 +44,30 @@ var store = new Vuex.Store({
         },
         updateGoodsInfo(state, goodsinfo){  // 修改购物车中商品的数量值
             state.car.some(item=>{
-                if(item.id == goodsinfo.id){
+                if(item.id === goodsinfo.id){
                     item.count = parseInt(goodsinfo.count);
                     return true
                 }
-            })
+            });
             // 当修改完商品的数量，把最新的购物车数据，保存到 本地存储中
             localStorage.setItem('car', JSON.stringify(state.car))
         },
         removeFormCar(state, id){  // 根据Id，从store 中的购物车中删除对应的那条商品数据
             state.car.some( (item,i) =>{
-                if(item.id == id){
+                if(item.id === id){
                     state.car.splice(i,1);
                     return true;
                 }
-            })
+            });
             // 当修改完商品的数量，把最新的购物车数据，保存到 本地存储中
             localStorage.setItem('car', JSON.stringify(state.car))
         },
         updateGoodsSelected(state,info){  // 把最新的 所有购物车商品的状态保存到 store 中去
             state.car.some( item =>{
-                if(item.id == info.id){
+                if(item.id === info.id){
                     item.selected = info.selected;
                 }
-            })
+            });
             // 当修改完商品的数量，把最新的购物车数据，保存到 本地存储中
             localStorage.setItem('car', JSON.stringify(state.car))
         }
@@ -77,14 +77,14 @@ var store = new Vuex.Store({
             var c=0;
             state.car.forEach(item=>{
                 c += item.count;
-            })
+            });
             return c;
         },
         getGoodsCount(state){
             var o={};
             state.car.forEach(item=>{
                 o[item.id]=item.count;
-            })
+            });
             return o;
         },
         getGoodsSelected(state){
@@ -98,17 +98,17 @@ var store = new Vuex.Store({
             var o={
                 count: 0,  // 勾选的数量
                 amount: 0  // 勾选的总价
-            }
+            };
             state.car.forEach(item =>{
                 if(item.selected){
                     o.count += item.count;
                     o.amount += item.price * item.count
                 }
-            })
+            });
             return o;
         }
     }
-})
+});
 
 // 导入 vue-resource
 import VueResource from 'vue-resource'
